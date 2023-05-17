@@ -9,7 +9,7 @@ load_dotenv()
 
 INSERT_CLIENT = "INSERT INTO cliente (name,email,idade,cpf,cep,senha) VALUES (%s,%s,%s,%s,%s,%s)"
 SELECT_CLIENT = "SELECT * FROM cliente WHERE id = (%s)"
-SELECT_ALL_TEXT = "SELECT * FROM texts ORDER BY text_id"
+SELECT_ALL_CLIENT = "SELECT id,name FROM cliente ORDER BY id"
 app = Flask(__name__)
 CORS(app)
 url = os.getenv("DATABASE_URL")
@@ -58,5 +58,22 @@ def get_cliente():
             response.mimetype = "text/plain"
             print(response.mimetype)
 
+    return response
+
+@app.get("/api/get/client/list")
+def get_client_list():
+    dicionario = {}
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute(SELECT_ALL_CLIENT)
+            cliente = cursor.fetchall()
+            index = 0
+            for c in cliente:
+                dados_novos = {index: {"id": c[0], "nome": c[1]}}
+                dicionario.update(dados_novos)
+                index += 1
+            response = make_response(dicionario)
+            response.mimetype = "text/plain"
+            print(response.mimetype)
     return response
 

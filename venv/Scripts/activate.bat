@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\lucas\PycharmProjects\rest_API\venv"
+set "VIRTUAL_ENV=C:\Users\lucas\PycharmProjects\srpint_python\venv"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
