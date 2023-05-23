@@ -1,5 +1,8 @@
 import re
-class Cliente:
+
+
+class ValidadorCliente:
+
     def __init__(self, nome, email, idade, cpf, cep):
         self.nome = nome
         if self.validar_email(email):
@@ -20,7 +23,7 @@ class Cliente:
             raise ValueError("CEP invalido")
 
     @staticmethod
-    def validar_email(self,email):
+    def validar_email(email):
         padrao = r'^[\w\.-]+@[\w\.-]+\.\w+$'
         # O padrão acima verifica se o email tem o formato adequado
 
@@ -31,7 +34,8 @@ class Cliente:
             return False
 
     @staticmethod
-    def validador_idade(self,idade):
+    def validador_idade(idade):
+        idade = int(idade)
         if idade > 18 or idade <= 120:
             print(f"IDADE : {idade} Validada")
             return True
@@ -39,7 +43,7 @@ class Cliente:
             return False
 
     @staticmethod
-    def validar_cpf(self, cpf):
+    def validar_cpf(cpf):
         cpf = str(cpf)
         # Removendo caracteres especiais
         cpf = cpf.replace(".", "").replace("-", "")
@@ -77,7 +81,7 @@ class Cliente:
         return True
 
     @staticmethod
-    def validar_cep(self,cep):
+    def validar_cep(cep):
         # Remove quaisquer caracteres que não sejam dígitos
         cep = str(cep)
         cep = re.sub(r'\D', '', cep)
@@ -96,7 +100,4 @@ class Cliente:
             return True
 
         return False
-
-
-cliente = Cliente("Lucas","lucasfjoaquim@gmail.com",21,"50258000805","09811-323")
 
